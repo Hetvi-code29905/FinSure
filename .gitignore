@@ -1,0 +1,32 @@
+# ---- Python / Backend ----
+backend/__pycache__/
+backend/*.py[cod]
+backend/*$py.class
+backend/.env
+backend/.env.*
+backend/venv/
+backend/.venv/
+backend/env/
+backend/models/*.pkl    # Don't push trained user models to GitHub
+backend/*.sqlite3
+
+# ---- Node / Frontend ----
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# ---- Editor & System ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+nul

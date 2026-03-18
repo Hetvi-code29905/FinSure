@@ -1,0 +1,43 @@
+# requirements.txt
+# Install: pip install -r requirements.txt
+
+# ── Web framework ─────────────────────────────────────────────
+fastapi
+uvicorn[standard]
+python-multipart
+
+# ── MongoDB ───────────────────────────────────────────────────
+motor
+pymongo
+dnspython
+
+# ── Pydantic / Settings ───────────────────────────────────────
+pydantic
+pydantic-settings
+email-validator
+
+# ── Auth / Security ───────────────────────────────────────────
+python-jose[cryptography]
+passlib[bcrypt]
+cryptography
+
+# ── Plaid ─────────────────────────────────────────────────────
+httpx
+
+# ── Background scheduler ──────────────────────────────────────
+apscheduler
+
+# ── Rate limiting ─────────────────────────────────────────────
+slowapi
+
+# ── ML ────────────────────────────────────────────────────────
+scikit-learn
+numpy
+pandas
+prophet
+joblib
+
+# ── Testing ───────────────────────────────────────────────────
+pytest
+pytest-asyncio
+mongomock-motor
