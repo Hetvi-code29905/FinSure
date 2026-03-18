@@ -1,7 +1,8 @@
 # ---- Python / Backend ----
-backend/__pycache__/
+**/__pycache__/
+**/*.pyc
+**/*.pyo
 backend/*.py[cod]
-backend/*$py.class
 backend/.env
 backend/.env.*
 backend/venv/

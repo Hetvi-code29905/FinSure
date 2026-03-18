@@ -1,5 +1,5 @@
 // src/App.js
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
@@ -36,9 +36,10 @@ function PublicRoute({ children }) {
 // ── Authenticated shell ───────────────────────────────────────
 
 function AuthenticatedShell({ children }) {
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   return (
-    <div className="app-shell">
-      <Sidebar />
+    <div className={`app-shell ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
+      <Sidebar collapsed={sidebarCollapsed} setCollapsed={setSidebarCollapsed} />
       <div className="app-main">
         <Navbar />
         <PageWrapper>{children}</PageWrapper>

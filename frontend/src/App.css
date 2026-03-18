@@ -16,6 +16,11 @@
   flex-direction: column;
   min-width: 0;
   margin-left: var(--sidebar-width);
+  transition: margin-left 0.3s ease;
+}
+
+.app-shell.sidebar-collapsed .app-main {
+  margin-left: 80px;
 }
 
 @media (max-width: 768px) {

@@ -1,5 +1,6 @@
 // src/components/ui/Modal.js
 import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 export default function Modal({ isOpen, onClose, title, children }) {
   // Close on Escape key
@@ -13,11 +14,11 @@ export default function Modal({ isOpen, onClose, title, children }) {
 
   if (!isOpen) return null;
 
-  return (
+  return createPortal(
     <div style={{
       position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
       backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex',
-      alignItems: 'center', justifyContent: 'center', zIndex: 1000,
+      alignItems: 'center', justifyContent: 'center', zIndex: 100000,
       backdropFilter: 'blur(4px)',
     }}>
       <div 
@@ -26,6 +27,7 @@ export default function Modal({ isOpen, onClose, title, children }) {
           background: 'var(--bg-elevated)', border: '1px solid var(--border-default)',
           borderRadius: 'var(--radius-xl)', padding: '1.5rem', width: '90%', maxWidth: '500px',
           boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+          maxHeight: '90vh', overflowY: 'auto'
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
@@ -44,6 +46,7 @@ export default function Modal({ isOpen, onClose, title, children }) {
           {children}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

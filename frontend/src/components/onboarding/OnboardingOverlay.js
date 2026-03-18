@@ -5,7 +5,7 @@ import Button from '../ui/Button';
 
 export default function OnboardingOverlay({ onComplete }) {
   const { user, refreshUser } = useAuth();
-  const [step, setStep] = useState(1); // 1 = Welcome/Tier2, 2 = Tier3
+  const [step, setStep] = useState(1); // 1 = Welcome, 2 = Behavorial, 3 = App Tour
   const [loading, setLoading] = useState(false);
 
   // Tier 2 state
@@ -24,6 +24,14 @@ export default function OnboardingOverlay({ onComplete }) {
   const handleNext = () => setStep(2);
 
   const handleFinish = async () => {
+    setStep(3);
+  };
+
+  const skipAll = async () => {
+    setStep(3);
+  };
+
+  const finalizeOnboarding = async () => {
     setLoading(true);
     try {
       const fixed_expenses = Object.entries(expenses).filter(([_, v]) => v).map(([k]) => k);
@@ -35,19 +43,6 @@ export default function OnboardingOverlay({ onComplete }) {
         debt_amount: debtAmount || null,
         behavioral_answers: behavior
       });
-      await refreshUser();
-      if (onComplete) onComplete();
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const skipAll = async () => {
-    setLoading(true);
-    try {
-      await apiPatch('/users/me', { onboarding_status: 'completed' });
       await refreshUser();
       if (onComplete) onComplete();
     } catch (err) {
@@ -201,7 +196,54 @@ export default function OnboardingOverlay({ onComplete }) {
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '2.5rem' }}>
               <Button variant="ghost" onClick={skipAll} disabled={loading}>Skip</Button>
-              <Button onClick={handleFinish} loading={loading}>Finish Onboarding</Button>
+              <Button onClick={handleFinish} loading={loading}>Continue →</Button>
+            </div>
+          </div>
+        )}
+
+        {step === 3 && (
+          <div className="animate-in">
+            <h2 style={{ marginBottom: '0.5rem', textAlign: 'center' }}>How to use Finsure</h2>
+            <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '2rem', fontSize: '0.9rem' }}>
+              Your account is ready! Here is a quick guide to getting started.
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              
+              <div style={{ background: 'var(--bg-card)', padding: '1rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                <div style={{ fontSize: '1.5rem', opacity: 0.9 }}>➕</div>
+                <div>
+                  <div style={{ fontWeight: 600, fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '0.2rem' }}>Adding Transactions</div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                    Click the <strong>"Add Manual Transaction"</strong> button right on your Dashboard or Transactions page anytime to securely log your daily cash expenses or income.
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ background: 'var(--bg-card)', padding: '1rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                <div style={{ fontSize: '1.5rem', opacity: 0.9 }}>📊</div>
+                <div>
+                  <div style={{ fontWeight: 600, fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '0.2rem' }}>The Dashboard</div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                    Your central command hub. It tracks your total runway, calculates your financial forecast, and instantly alerts you of upcoming EMIs or unusual spending.
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ background: 'var(--bg-card)', padding: '1rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                <div style={{ fontSize: '1.5rem', opacity: 0.9 }}>🧭</div>
+                <div>
+                  <div style={{ fontWeight: 600, fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '0.2rem' }}>The Sidebar</div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                    Use the collapsible sidebar on the left to jump deep into detailed Insights, manage specific Budgets, review your Account Security, or tweak settings.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2.5rem' }}>
+              <Button onClick={finalizeOnboarding} loading={loading} style={{ width: '100%', padding: '0.8rem' }}>Get Started ✨</Button>
             </div>
           </div>
         )}

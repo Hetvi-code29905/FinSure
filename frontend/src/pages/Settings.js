@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useAuth from '../hooks/useAuth';
+import { useAuthStore } from '../store/authStore';
 import { apiPatch, apiDelete } from '../lib/api';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
