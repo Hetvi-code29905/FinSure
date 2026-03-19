@@ -65,20 +65,19 @@ The core server follows an aggressive MVC/Service-Repository structural pattern 
 *   **`src/store/`**: Global Authentication stores dictating deep-linking access blocks and user caching.
 *   **`src/lib/api.js`**: Reusable Axios instances automatically intercepting 401 Unauthorized codes to trigger silent background JWT refreshes without breaking user workflow.
 
-## 🖥️ UI Page-by-Page Breakdown
+## 🧭 User Dashboard & Sidebar Features
 
-Every single localized route within the React application was aggressively designed exactly for optimal financial UX:
+The application is structured around a collapsible sidebar, giving users seamless access to the following core functionalities:
 
-*   **Login & Register (`/login`, `/register`)**: The unauthenticated entry points. Seamlessly caches your secure JWT Token in `LocalStorage` while fetching your basic user structure for `authStore`. Captures 401 Unauthorized API responses natively without crashing.
-*   **Onboarding Overlay (`<OnboardingOverlay />`)**: A multi-step introductory form dynamically triggered only if your `onboarding_status` is incomplete. Gathers critical behavioral input (fixed expenses, debt, impulse control limits) to permanently tune the backend Machine Learning algorithms, naturally transitioning directly into a slick, micro-animated App Tour.
-*   **The Dashboard (`/dashboard`)**: The ultimate command center. Displays heavily calculated KPIs: Gross Cash, Total Debts, and your exact **Runway Month Forecast**. Uses modular `<Card />` units to render interactive Spending Velocity charts alongside urgent, real-time Machine Learning Anomaly transaction flags.
-*   **Transactions Grid (`/transactions`)**: A robust, dynamically paginated data table. Supports instant complex filtering (Date Ranges, Text Search, Category Maps). Houses the hidden standard HTML `<input type="file">` for the massive pandas CSV bulk ingestion stream.
-*   **Accounts/Wallets Manager (`/accounts`)**: Visually splits your global Net Worth into distinct physical vaults (e.g., Credit Cards, Bank Checking, Hard Cash). Lays down the exact architectural hooks needed for the upcoming multi-bank Plaid integration.
-*   **Insights Engine (`/insights`)**: Pure data abstraction. Leverages deep grouping APIs to map up to 6 months of historical cash flow velocity against your static budgets to pinpoint exact categories causing runway reduction.
-*   **Budgets Limits (`/budgets`)**: Allows you to explicitly set hard limits for localized categories (like "Entertainment") and renders smooth geometric progress bars that dynamically turn red the moment your actual expenditures breach the set threshold.
-*   **EMI Calendar (`/calendar`)**: Directly extracts recurring timeline objects from the Database (Loans, Netflix Subscriptions) and plots them systematically. This directly powers the red "Due Today" bell icon in your global `<Navbar />`.
-*   **Risk & Security (`/safety`)**: A specialized, read-only analytics view evaluating the underlying structural safety of your cash flow distributions algorithmically scored out of 100.
-*   **Global Settings (`/settings`)**: Controls massive systemic overrides. You can mathematically change the default system currency (`INR`, `USD`), rebuild your target objectives, or access the heavily red-themed Danger Zone to permanently initiate global backend data wiping & account deactivation.
+*   **Dashboard**: The primary command center. Displays top-level metrics like Gross Cash and Total Debts, calculates exact Runway Month Forecasts, and renders real-time Spending Velocity charts alongside urgent Machine Learning Anomaly flags.
+*   **Transactions**: A robust data grid for managing daily expenses. Users can filter by date range, search by text, or explicitly toggle anomaly-only views. It also houses a bulk-upload feature that parses massive CSV bank statements natively.
+*   **Safety Net**: A specialized analytics view evaluating the underlying structural risk of the user's specific cash flow mapping. It generates a customized algorithmic health score out of 100 pointing towards complete financial security.
+*   **Budget & Spending**: Allows users to explicitly set hard monthly spending limits for categories (e.g., "Entertainment"). It renders smooth progress bars that dynamically turn red the moment expenditures breach the set target.
+*   **EMI Tracker**: Specifically isolates and tracks high-priority loan installments, providing a clear amortization overview to ensure the user never misses a crucial payment window.
+*   **Axe Subscriptions**: A dedicated view targeting recurring "leakage" expenses like Netflix, Spotify, or Gym memberships, actively alerting users of unused recurring charges to help them cleanly sever unwanted costs.
+*   **Calendar**: Explodes all upcoming EMIs and automated bill charges into an interactive, visual chronological timeline. This directly powers the red "Due Today" bell icon alerts in the global Navbar.
+*   **AI Insights**: A deep analytics machine-learning engine that mathematically aggregates historical cash flow data, mapping spending habits to pinpoint exactly where money is leaking over time.
+*   **Settings**: Controls global system overrides. Users can update their Profile, swap their primary default Currency (INR, USD, EUR, GBP), tweak their baseline Financial Goals, or access the Danger Zone to permanently wipe their data perfectly.
 
 ---
 
