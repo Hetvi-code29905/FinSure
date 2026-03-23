@@ -1,6 +1,6 @@
-# Finomous: AI-Powered Financial Stability & Risk Intelligence Platform
+# FinSure: AI-Powered Financial Stability & Risk Intelligence Platform
 
-**Finomous** is a full-stack, AI-driven financial tracking and prediction dashboard engineered to process daily bank transactions, strictly calculate predictive spending runways, and proactively flag anomaly expenditures using machine learning algorithms.
+**FinSure** is a full-stack, AI-driven financial tracking and prediction dashboard engineered to process daily bank transactions, strictly calculate predictive spending runways, and proactively flag anomaly expenditures using machine learning algorithms.
 
 ---
 
